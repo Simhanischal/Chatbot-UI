@@ -1,4 +1,3 @@
-import './App.css';
 import { StylesProvider } from '@material-ui/core/styles';
 import ChatBot from './Components/ChatBot';
 
