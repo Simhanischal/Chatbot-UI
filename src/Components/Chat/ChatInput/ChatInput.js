@@ -1,0 +1,70 @@
+import React from 'react';
+import styled from 'styled-components';
+import IconButton from '@material-ui/core/IconButton';
+import TelegramIcon from '@material-ui/icons/Telegram';
+
+const ChatInputContainer = styled.div`
+    background-color: #000000;
+    color: #FFFFFF;
+    width: 370px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #FFFFFF;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+`;
+
+const ChatText = styled.textarea`
+    vertical-align: middle;
+    margin-left: 15px;
+    ${'' /* margin-top: 10px; */}
+    width: 250px;
+    height: 30px;
+    ${'' /* line-height: 50px; */}
+    border: none;
+    resize: none;
+    font-size: 16px;
+    background-color: #000000;
+    color: #FFFFFF;
+    border-radius: 6px;
+    outline: none;
+    ${'' /* &:focus{
+        line-height: 20px;
+    } */}
+    &::-webkit-scrollbar {
+        width: 0;  /* to remove scrollbar space */
+        background: transparent;  /* to make scrollbar invisible */
+    }
+`;
+
+const ChatSend = styled(TelegramIcon)`
+    margin-left: 45px;
+    margin-top: -5px;
+    cursor: pointer;
+    font-size: 35px;
+    color: #5851DB;
+`;
+
+const ChatInput = props => {
+    return(
+        <>
+            <ChatInputContainer>
+                <ChatText 
+                    placeholder="Ask me anything!" 
+                    value={props.input} 
+                    onChange={props.handleInputChange}
+                    onKeyDown={props.handleEnter}   
+                />
+                {
+                    props.input.length > 0 && 
+                    <IconButton id="iconbutton" onClick={() => props.handleSend()}>
+                        <ChatSend />
+                    </IconButton>
+                }    
+            </ChatInputContainer>
+        </>
+    );
+}
+
+export default ChatInput;
