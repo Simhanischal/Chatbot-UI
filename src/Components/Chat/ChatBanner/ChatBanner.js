@@ -39,7 +39,7 @@ const ChatBanner = () => {
                 </BannerAvatar>
                 <BannerBotDetails>
                     <Typography variant="body2">Dummy BOT</Typography>
-                    <Typography variant="caption" style={{ fontSize: 11, color: green[300], marginLeft: -50}} >
+                    <Typography variant="caption" style={{ fontSize: 11, color: green[300]}} >
                         Online
                     </Typography>
                 </BannerBotDetails>
