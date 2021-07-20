@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import IconButton from '@material-ui/core/IconButton';
 import TelegramIcon from '@material-ui/icons/Telegram';
@@ -47,18 +47,22 @@ const ChatSend = styled(TelegramIcon)`
 `;
 
 const ChatInput = props => {
+    useEffect(() => {
+        props.inputRef.current.focus();
+    });
     return(
         <>
             <ChatInputContainer>
                 <ChatText 
                     placeholder="Ask me anything!" 
-                    value={props.input} 
+                    value={props.input}
+                    ref={props.inputRef} 
                     onChange={props.handleInputChange}
                     onKeyDown={props.handleEnter}   
                 />
                 {
                     props.input.length > 0 && 
-                    <IconButton id="iconbutton" onClick={() => props.handleSend()}>
+                    <IconButton id="iconbutton" onClick={props.handleSend}>
                         <ChatSend />
                     </IconButton>
                 }    

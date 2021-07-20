@@ -1,6 +1,7 @@
 import React from 'react';
 import WelcomeBubble from '../WelcomeBubble';
 import WelcomeCircle from '../WelcomeCircle';
+import BackupAlert from '../BackupAlert';
 import Image from '../../../Images/logo192.png';
 import styled from 'styled-components';
 
@@ -29,6 +30,11 @@ const Welcome = props => {
                 closeWelcomeMessage={props.closeWelcomeMessage} 
                 image={Image} 
                 width="50" 
+            />
+            <BackupAlert 
+                openAlert={props.openAlert} 
+                handleRestore={props.handleRestore}
+                handleNewConvo={props.handleNewConvo} 
             />
         </WelcomeContainer>
     );

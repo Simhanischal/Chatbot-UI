@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-// import axios from 'axios';
 import styled from 'styled-components';
 import ChatBanner from '../ChatBanner';
 import ChatMessages from '../ChatMessages';
@@ -10,7 +9,6 @@ import BotButton from '../BotButton';
 import UserChatBubble from '../UserChatBubble';
 
 const Container = styled.div`
-    z-index: 100;
     position: fixed;
     bottom: 100px;
     right: 50px;
@@ -26,19 +24,13 @@ const Container = styled.div`
 
 const ChatWindow = props => {
     const [ input, setInput ] = useState(''); //user input
-
-    const [ messages, setMessages ] = useState([
-        {
-         'type': 'Bot', 
-         'message': 'Hey there, welcome back!Anything I can help you with?',
-         'datetime': new Date().toLocaleString() //current date and time
-        }
-    ]); //conversation between the bot and the user with the default message
-
     const [ typingIndicator, setTypingIndicator ] = useState(false);
 
     //creating a refernce for the end of chat window
     const windowEndRef = useRef(null);
+
+    //creating a refernce for chat input to focus upon render
+    const inputRef = useRef(null);
 
     //handle the change in user input
     const handleInputChange = event => {
@@ -50,7 +42,7 @@ const ChatWindow = props => {
     //repalce the placeholder method definition with the actual API call
     const fetchBotReply = () => {
         setTimeout(() => {
-            setMessages(oldArray =>
+            props.setMessages(oldArray =>
                 [
                     ...oldArray,
                     {
@@ -69,7 +61,7 @@ const ChatWindow = props => {
     const handleSend = (userInput = input) => {
         //get the exisitng messages state array and add the new entry(user input) to the array
         if(userInput !== ''){
-            setMessages(oldArray =>
+            props.setMessages(oldArray =>
                 [
                     ...oldArray,
                     {
@@ -115,7 +107,13 @@ const ChatWindow = props => {
     //calls scrollToBottom method when the 'messages' state is updated
     useEffect(() => {
         scrollToBottom();
-    }, [messages,props.openWindow]);
+    }, [props.messages,props.openWindow]);
+
+    useEffect(() => {
+        //store the updated conversation in localstorage whenever messages are updated
+        if(props.messages.length > 1 || !props.backup)
+            window.localStorage.setItem("messages", JSON.stringify(props.messages)); 
+    }, [props.messages, props.backup]);
 
     //to open and close the chat window based on openWindow state
     return(
@@ -129,7 +127,7 @@ const ChatWindow = props => {
                             //loop through the messages array and extract a component from each element
                             //based on message type property which determines if the component is
                             //user chat or bot chat or bot button
-                            messages.map((message) => {
+                            props.messages.map((message) => {
                                 if(message.type === 'Bot'){
                                     return(
                                         <React.Fragment key={message.datetime.concat(message.message)}>
@@ -174,6 +172,7 @@ const ChatWindow = props => {
                     <TypingIndicator typingIndicator={typingIndicator}/>
                     <ChatInput 
                         input={input} 
+                        inputRef={inputRef}
                         handleInputChange={handleInputChange} 
                         handleSend={handleSend}
                         handleEnter={handleEnter}

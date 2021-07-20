@@ -36,7 +36,14 @@ jest.mock("../UserChatBubble", () => {
 
 describe("test for ChatWindow component", () => {
     it("should render chat window", () => {
-        const wrapper = shallow(<ChatWindow openWindow={true} />);
+        const messages = [
+                {
+                    'type': 'Bot', 
+                    'message': 'Hey',
+                    'datetime': new Date().toLocaleString() //current date and time
+                }
+            ];
+        const wrapper = shallow(<ChatWindow messages={messages} openWindow={true} />);
         const containerElement = wrapper.find("#container");
         expect(containerElement).toHaveLength(1);
     });

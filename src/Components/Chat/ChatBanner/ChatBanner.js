@@ -38,7 +38,7 @@ const ChatBanner = () => {
                     <img alt="Chat Avatar" src={Image} width="20" />
                 </BannerAvatar>
                 <BannerBotDetails>
-                    <Typography variant="body2">Dummy BOT</Typography>
+                    <Typography variant="body2">Nischal's BOT</Typography>
                     <Typography variant="caption" style={{ fontSize: 11, color: green[300]}} >
                         Online
                     </Typography>
