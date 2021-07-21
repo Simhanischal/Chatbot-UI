@@ -48,7 +48,11 @@ const ChatSend = styled(TelegramIcon)`
 
 const ChatInput = props => {
     useEffect(() => {
-        props.inputRef.current.focus();
+        //if the device is not a mobile, then autofocus
+        //this case is being handled because of keyboard popping up
+        //in mobile devices as soon as the text area is focused
+        if(window.screen.width > 500)
+            props.inputRef.current.focus();
     });
     return(
         <>
@@ -62,7 +66,7 @@ const ChatInput = props => {
                 />
                 {
                     props.input.length > 0 && 
-                    <IconButton id="iconbutton" onClick={props.handleSend}>
+                    <IconButton id="iconbutton" onClick={() => props.handleSend()}>
                         <ChatSend />
                     </IconButton>
                 }    

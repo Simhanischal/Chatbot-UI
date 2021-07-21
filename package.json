@@ -1,7 +1,7 @@
 {
   "name": "chatbot-ui",
   "version": "0.1.0",
-  "homepage": "https://simhanischal.github.io/ChatBot-UI",
+  "homepage": "https://simhanischal.github.io/Chatbot",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.4",
@@ -21,7 +21,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "clean": "gh-pages-clean",
     "test": "jest",
     "eject": "react-scripts eject",
     "coverage": "jest --coverage"

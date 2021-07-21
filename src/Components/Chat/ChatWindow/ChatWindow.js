@@ -17,8 +17,11 @@ const Container = styled.div`
     width: 370px;
     box-shadow: 0 10px 30px 1px rgb(0 0 0 / 30%);
     /*for mobile display*/
-    @media (max-width: 600px){
-        right: 0;
+    @media (max-width: 480px){
+        position: absolute;
+        top: 0;
+        left: 0;
+        box-shadow: none;
     }
 `;
 
