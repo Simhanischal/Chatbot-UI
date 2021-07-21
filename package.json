@@ -1,7 +1,6 @@
 {
   "name": "chatbot-ui",
   "version": "0.1.0",
-  "homepage": "https://simhanischal.github.io/Chatbot-UI",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.4",
