@@ -19,8 +19,10 @@ const Container = styled.div`
     /*for mobile display*/
     @media (max-width: 480px){
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 10px;
+        right: 3px;
+        left: 2px;
+        ${'' /* left: 0; */}
         box-shadow: none;
     }
 `;
